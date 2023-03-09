@@ -1,0 +1,8 @@
+{
+    "textToImageLabel": "Text to transform into image",
+    "formSubmit": "Transform to image",
+    "generatedImage": "Generated Image",
+    "title" : "Imagitor Transform your text into image",
+    "en": "English",
+    "fr": "French"
+}
