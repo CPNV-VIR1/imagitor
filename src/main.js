@@ -1,4 +1,5 @@
-import './scss/main.scss'
+import './scss/main.scss';
+//import * from './helpers/function';
 
 
 
@@ -7,5 +8,3 @@ document.querySelector('#app').innerHTML = `
     <h1>Hello Vite!</h1>
   </div>
 `
-
-setupCounter(document.querySelector('#counter'))
