@@ -2,11 +2,11 @@
   "name": "imagitor",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "node backend/server.js"
   },
   "devDependencies": {
     "sass": "^1.58.3",
