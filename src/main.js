@@ -22,7 +22,6 @@ document.querySelector('#app').innerHTML = `
           <input type="submit" value="Transformer en image">
         </form>
 
-
         <div class="app__contain__image">
           <img src="" alt="Image générée">
         </div>
