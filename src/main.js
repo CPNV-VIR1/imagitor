@@ -1,10 +1,17 @@
 import './scss/main.scss';
 //import * from './helpers/function';
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 
 
 document.querySelector('#app').innerHTML = `
-  <div>
+  <main>
     <h1>Hello Vite!</h1>
-  </div>
+    <div>
+      <form action="">
+
+      </form>
+    </div>
+  </main>
 `
