@@ -9,10 +9,12 @@ const server = http.createServer((req, res) => {
 
 
     if (req.url === '/image' && req.method === 'GET') {
-        if(req.params.id) {
+        console.log(req.body);
+
+       /* if(req.body.image) {
             console.log(req.params.id)
-        }
-        getImage(req, res);
+        }*/
+        //getImage(req, res);
     } else if (req.url === '/image' && req.method === 'POST') {
 
         createImage(req, res);
