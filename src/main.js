@@ -1,9 +1,12 @@
 import './scss/main.scss';
-//import * from './helpers/function';
+import dotenv from "dotenv"
 
-const URL_API = import.meta.env.VITE_API_URL;
+/*dotenv.config()
+
+console.log(process.env)*/
 
 window.onload = () => {
+
   document.querySelector('#form_textToImage').addEventListener('submit', (event) => {
     event.preventDefault();
     const textToImage = document.querySelector('#textToImage').value;
@@ -12,10 +15,11 @@ window.onload = () => {
       textToImage,
     };
 
-    console.log(URL_API)
-    
-    fetch(`${URL_API}/image`, {
+
+    fetch(`http://127.0.0.1:5000/image`, {
       method: 'POST',
+      mode: "cors",
+      cache: "default",
       headers: {
         'Content-Type': 'application/json',
       },

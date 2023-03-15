@@ -9,6 +9,8 @@
     "serve": "node backend/server.js"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "sass": "^1.58.3",
     "vite": "^4.1.0"
   }

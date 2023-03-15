@@ -1,10 +1,10 @@
 const http = require('http');
 const { getImage, createImage } = require('./controllers/imageController');
 
-
 const server = http.createServer((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
+    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5173');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Max-Age', 2592000); // 30 days
 
 
