@@ -7,19 +7,15 @@ console.log(process.env)*/
 
 window.onload = () => {
 
-  document.querySelector('#form_textToImage').addEventListener('submit', (event) => {
+  document.querySelector('#form_textToImage').addEventListener('submit', async (event) => {
     event.preventDefault();
     const textToImage = document.querySelector('#textToImage').value;
-
-    const data = {
-      textToImage,
-    };
+    const data = {textToImage};
 
 
-    fetch(`http://127.0.0.1:5000/image`, {
+    await fetch(`http://127.0.0.1:5000/image`, {
       method: 'POST',
       mode: "cors",
-      cache: "default",
       headers: {
         'Content-Type': 'application/json',
       },
