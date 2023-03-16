@@ -1,6 +1,6 @@
 # IMIGATOR
 
-creates images from text, simple.
+creates images from text, simple.\
 this repo has the front and the back end, so be careful.
 
 ## Installation
@@ -26,7 +26,7 @@ npm run serve
 
 ## Authors
 
-Yannick Perret
+Yannick Perret\
 Jessy Borcard
 
 
