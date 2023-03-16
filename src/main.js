@@ -7,10 +7,13 @@ console.log(process.env)*/
 
 window.onload = () => {
 
+  const langage = navigator.language || 'fr-FR';
+
+
   document.querySelector('#form_textToImage').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const textToImage = document.querySelector('#textToImage').value;
-    const data = {textToImage};
+    event.preventDefault()
+    const textToImage = document.querySelector('#textToImage').value
+    const data = {textToImage}
 
 
     await fetch(`http://127.0.0.1:5000/image`, {
