@@ -35,16 +35,17 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 50vw;
-    height: 70vh;
+    width: 85vw;
+    height: 85vh;
     margin : 5vh auto;
+    gap : 20px;
 
     &__form {
         display : flex;
         flex-direction: column;
         align-items: center;
-        height: 55%;
-        width: 55%;
+        height: 35%;
+        width: 40%;
         gap : 20px;
         
         & textarea {
@@ -55,6 +56,16 @@ body {
         & input {
             width: 80%;
             height: 40px;
+        }
+    }
+
+    &__image{
+        display : flex;
+        justify-content: center;
+
+        & img{
+            width: 100%;
+            height: auto;
         }
     }
 }
