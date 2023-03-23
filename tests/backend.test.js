@@ -1,7 +1,7 @@
 let ImageController = require('../backend/controllers/imageController.js');
-let NullInputException = require('../backend/controllers/NullInputException.js');
 
 const { loadImage, createCanvas } = require('canvas');
+
 const imgWidth = 1200
 const imgHeight = 650
 
