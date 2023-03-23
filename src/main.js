@@ -1,39 +1,33 @@
 import './scss/main.scss';
-import dotenv from "dotenv"
-
-/*dotenv.config()
-
-console.log(process.env)*/
 
 window.onload = () => {
 
   const langage = navigator.language || 'fr-FR';
 
-
   document.querySelector('#form_textToImage').addEventListener('submit', async (event) => {
-    event.preventDefault()
-    const textToImage = document.querySelector('#textToImage').value
-    const data = {textToImage}
+    event.preventDefault();
+    const textToImage = document.querySelector('#textToImage').value;
+    const data = { text: textToImage };
 
+    const image = document.querySelector('#outputImage');
 
-    await fetch(`http://127.0.0.1:5000/image`, {
+    await fetch('http://localhost:5000/image', {
       method: 'POST',
-      mode: "cors",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: {image: JSON.stringify(data)},
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        image.src = data.image;
+      .then((res) => res.text())
+      .then((imagePath) => {
+        // Convertir le chemin de l'image en une URL complète
+        const imageURL = `http://localhost:5000${imagePath}`;
+        image.src = imageURL;
       })
       .catch((err) => console.log(err));
-
   });
-};
+}
 
-document.querySelector('#app').innerHTML = `
+  document.querySelector('#app').innerHTML = `
   <header class="app__header">
     <h1>Imagitor ©</h1>
     <form id="form_langage">
@@ -51,7 +45,7 @@ document.querySelector('#app').innerHTML = `
         </form>
 
         <div class="app__contain__image">
-          <img src="" alt="Image générée">
+          <img src="" alt="Image générée" id="outputImage" className="outputImage">
         </div>
   </main>
-`
+`;
