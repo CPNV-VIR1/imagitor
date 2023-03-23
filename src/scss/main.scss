@@ -3,6 +3,7 @@
 
 // Mixing here
 
+
 // Global styles here
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -29,6 +30,11 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+*{
+    box-sizing: border-box;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -53,4 +59,4 @@ table {
 	border-spacing: 0;
 }
 
-@import "_index"
+@import "_index";
