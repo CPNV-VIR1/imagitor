@@ -6,11 +6,10 @@ const url = require('url');
 const { promisify } = require('util');
 const stat = promisify(fs.stat);
 const { saveImage, getImageByName, getAllImages, createImage } = require('./controllers/imageController');
-const { sequelize, initDatabase, createDatabaseIfNotExist } = require('./database/database');
+const { initDatabase, createDatabaseIfNotExist } = require('./database/database');
 
 const port = 5000;
 
-// Appelez les fonctions createDatabaseIfNotExist et initDatabase
 (async () => {
     await createDatabaseIfNotExist();
     await initDatabase();
@@ -75,7 +74,7 @@ const server = http.createServer(async (req, res) => {
 
     else if (req.url.startsWith('/static') && req.method === 'GET') {
         const reqPath = url.parse(req.url).pathname;
-        const filePath = path.join(__dirname, 'assets', 'images', reqPath.substr(7));
+        const filePath = path.join(__dirname, 'assets', 'images', reqPath.substring(7));
 
         try {
             await stat(filePath);
