@@ -9,9 +9,13 @@
     "serve": "node backend/server.js"
   },
   "devDependencies": {
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "sass": "^1.58.3",
     "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "canvas": "^2.11.0"
   }
 }
