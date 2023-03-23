@@ -27,6 +27,23 @@ cd imagitor
 npm install
 ```
 
+### Configuration de la base de données MariaDB
+Ce projet utilise MariaDB comme base de données pour stocker les informations sur les images générées. Voici les étapes à suivre pour configurer MariaDB pour votre projet :
+
+1. Installez MariaDB
+Si vous n'avez pas déjà MariaDB installé sur votre système, vous pouvez le télécharger et l'installer à partir de [leur site officiel](https://mariadb.org/download/).
+
+2. Configurez les variables d'environnement
+Créez un fichier .env.local ou copier l'exemple .env.exemple dans le dossier ./backend avec les informations de connexion à la base de données. Voici un exemple de fichier .env.local :
+
+```bash
+DATABASE_USERNAME=your_username
+DATABASE_PASSWORD=your_password
+DATABASE_HOST=127.0.0.1
+DATABASE_PORT=3306
+DATABASE_DATABASE=imagitor
+DATABASE_ENGINE=mysql
+```
 
 ## Utilisation
 

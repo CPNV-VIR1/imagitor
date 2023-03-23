@@ -1,28 +1,20 @@
 const http = require('http');
 const querystring = require('querystring');
 const fs = require('fs');
-const { saveImage, getImageByName, getAllImages, createImage } = require('./controllers/imageController');
 const path = require('path');
-const { Image } = require('./models/image');
 const url = require('url');
 const { promisify } = require('util');
 const stat = promisify(fs.stat);
-const sequelize = require('./database/database');
+const { saveImage, getImageByName, getAllImages, createImage } = require('./controllers/imageController');
+const { sequelize, initDatabase, createDatabaseIfNotExist } = require('./database/database');
 
 const port = 5000;
 
-async function initDatabase() {
-    try {
-        await sequelize.authenticate();
-        console.log('Connexion à la base de données établie avec succès.');
-        await sequelize.sync({ alter: true });
-        console.log('Les modèles ont été synchronisés avec la base de données.');
-    } catch (error) {
-        console.error('Impossible de se connecter à la base de données:', error);
-    }
-}
-
-initDatabase();
+// Appelez les fonctions createDatabaseIfNotExist et initDatabase
+(async () => {
+    await createDatabaseIfNotExist();
+    await initDatabase();
+})();
 
 const server = http.createServer(async (req, res) => {
     // CORS headers
