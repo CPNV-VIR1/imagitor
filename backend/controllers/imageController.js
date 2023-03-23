@@ -21,16 +21,19 @@ const randomCharacters = (length) => {
 
 /* Saving the image to the images folder. */
 exports.saveImage = async (image, imageName) => {
-    return new Promise((resolve, reject) => {
-        const imagePath = path.join('backend', 'assets', 'images', imageName);
-        fs.writeFile(imagePath, image.toBuffer(), (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(imagePath);
-            }
-        });
-    });
+        const buffer = image.toBuffer('image/png');
+        const filePath = path.join('backend', 'assets', 'images', imageName);
+        const imagesDir = path.join('backend', 'assets', 'images');
+
+        try {
+            await fs.promises.access(imagesDir, fs.constants.F_OK);
+          } catch (err) {
+            await fs.promises.mkdir(imagesDir, { recursive: true });
+          }
+          
+        await fs.promises.writeFile(filePath, buffer);
+        
+        return imageName; // Retournez seulement le nom du fichier
 }
 
 exports.getImageByName = async (imageName) => {

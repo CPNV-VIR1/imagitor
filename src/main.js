@@ -19,8 +19,8 @@ window.onload = () => {
     })
       .then((res) => res.text())
       .then((imagePath) => {
-        // Convertir le chemin de l'image en une URL complète
-        const imageURL = `http://localhost:5000${imagePath}`;
+        // Utilisez le préfixe "/static" pour accéder aux fichiers statiques
+        const imageURL = `http://127.0.0.1:5000/static${imagePath}`;
         image.src = imageURL;
       })
       .catch((err) => console.log(err));
