@@ -23,6 +23,7 @@ const randomCharacters = (length) => {
 exports.saveImage = async (image, imageName) => {
         const buffer = image.toBuffer('image/png');
         const filePath = path.join('backend', 'assets', 'images', imageName);
+        const imagesDir = path.join('backend', 'assets', 'images');
 
         try {
             await fs.promises.access(imagesDir, fs.constants.F_OK);
@@ -31,6 +32,7 @@ exports.saveImage = async (image, imageName) => {
           }
           
         await fs.promises.writeFile(filePath, buffer);
+        
         return imageName; // Retournez seulement le nom du fichier
 }
 
