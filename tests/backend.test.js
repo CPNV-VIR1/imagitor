@@ -17,7 +17,7 @@ test('created image with inputs returns canvas', () => {
     expect(image).toEqual(canvas);
     //then
 })
-test('created image without inputs throws exception', () => {
+test('created image without inputs returns canvas', () => {
 
     //given
     var image = ImageController.createImage("");
@@ -26,5 +26,5 @@ test('created image without inputs throws exception', () => {
     //Assertion will trigger the events
 
     //then
-    expect(image).toThrow(NullInputException);
+    expect(image).toEqual(canvas);
 })
