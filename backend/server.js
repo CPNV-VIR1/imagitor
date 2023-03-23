@@ -3,13 +3,26 @@ const querystring = require('querystring');
 const fs = require('fs');
 const { saveImage, getImageByName, getAllImages, createImage } = require('./controllers/imageController');
 const path = require('path');
-
-
+const { Image } = require('./models/image');
 const url = require('url');
 const { promisify } = require('util');
 const stat = promisify(fs.stat);
+const sequelize = require('./database/database');
 
 const port = 5000;
+
+async function initDatabase() {
+    try {
+        await sequelize.authenticate();
+        console.log('Connexion à la base de données établie avec succès.');
+        await sequelize.sync({ alter: true });
+        console.log('Les modèles ont été synchronisés avec la base de données.');
+    } catch (error) {
+        console.error('Impossible de se connecter à la base de données:', error);
+    }
+}
+
+initDatabase();
 
 const server = http.createServer(async (req, res) => {
     // CORS headers
@@ -55,8 +68,8 @@ const server = http.createServer(async (req, res) => {
                 const text = postData.text || 'Texte par défaut';
 
                 const image = await createImage(text);
-                
-                const imagePath = await saveImage(image, imageName);
+
+                const imagePath = await saveImage(image, text);
 
                 res.writeHead(200, { 'Content-Type': 'text/plain' });
                 res.end(imagePath);
@@ -66,22 +79,22 @@ const server = http.createServer(async (req, res) => {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('Seules les requêtes POST sont autorisées');
         }
-    } 
+    }
 
     else if (req.url.startsWith('/static') && req.method === 'GET') {
         const reqPath = url.parse(req.url).pathname;
         const filePath = path.join(__dirname, 'assets', 'images', reqPath.substr(7));
-        
+
         try {
-          await stat(filePath);
-          res.writeHead(200, { 'Content-Type': 'image/png' });
-          res.end(fs.readFileSync(filePath));
+            await stat(filePath);
+            res.writeHead(200, { 'Content-Type': 'image/png' });
+            res.end(fs.readFileSync(filePath));
         } catch (err) {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.end('Fichier introuvable');
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('Fichier introuvable');
         }
-      }
-    
+    }
+
     else {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Page introuvable');
