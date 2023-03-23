@@ -50,6 +50,13 @@ Le serveur est maintenant en écoute sur le port 5000 (ou le port spécifié dan
 - GET /image: Récupère la liste des images sauvegardées sur le serveur.
 - GET /image/{name}: Récupère une image spécifique en utilisant son nom.
 
+
+
+## Erreur connue
+Une erreur avec la librairie canvas (pour le backend) est possible si vous n'avez pas toutes les dépendances installé en amont.
+Veuillez-vous référer à la page du wiki de la librairie, disponible [ici le wiki](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows)
+
+
 ## Authors
 
 Yannick Perret\
