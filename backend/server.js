@@ -55,7 +55,7 @@ const server = http.createServer(async (req, res) => {
                 const text = postData.text || 'Texte par défaut';
 
                 const image = await createImage(text);
-                const imageName = `${Date.now()}_${encodeURIComponent(text)}.png`;
+                const imageName = `${Date.now()}_${encodeURIComponent(text)}.svg`;
                 const imagePath = await saveImage(image, imageName);
 
                 res.writeHead(200, { 'Content-Type': 'text/plain' });
