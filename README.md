@@ -14,17 +14,17 @@ Ce projet est un serveur Node.js simple qui permet de convertir un texte en imag
 1. Clonez le dépôt git :
    
 ```
-git clone https://github.com/CPNV-RIA1/imagitor.git imaginator
+git clone https://github.com/CPNV-RIA1/imagitor.git imagitor
 ```
 
 2. Accédez au dossier du projet :
 ```
-cd imaginator
+cd imagitor
 ```
 
 3. Installez les dépendances :
 ```
-    npm install
+npm install
 ```
 
 
