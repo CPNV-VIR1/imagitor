@@ -1,6 +1,6 @@
 let ImageController = require('../backend/controllers/imageController.js');
 let NullInputException = require('../backend/controllers/NullInputException.js');
-test('created_image_with_inputs_returns_true', () => {
+test('created image with inputs returns true', () => {
 
     //given
     var image = ImageController.createImage("test");
@@ -11,7 +11,7 @@ test('created_image_with_inputs_returns_true', () => {
     expect(image).toEqual(true);
     //then
 })
-test('created_image_without_inputs_throws_exception', () => {
+test('created image without inputs throws exception', () => {
 
     //given
     var image = ImageController.createImage("");
