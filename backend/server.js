@@ -2,6 +2,12 @@ const http = require('http');
 const querystring = require('querystring');
 const fs = require('fs');
 const { saveImage, getImageByName, getAllImages, createImage } = require('./controllers/imageController');
+const path = require('path');
+
+
+const url = require('url');
+const { promisify } = require('util');
+const stat = promisify(fs.stat);
 
 const port = 5000;
 
@@ -60,7 +66,23 @@ const server = http.createServer(async (req, res) => {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('Seules les requêtes POST sont autorisées');
         }
-    } else {
+    } 
+
+    else if (req.url.startsWith('/static') && req.method === 'GET') {
+        const reqPath = url.parse(req.url).pathname;
+        const filePath = path.join(__dirname, 'assets', 'images', reqPath.substr(7));
+        
+        try {
+          await stat(filePath);
+          res.writeHead(200, { 'Content-Type': 'image/png' });
+          res.end(fs.readFileSync(filePath));
+        } catch (err) {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Fichier introuvable');
+        }
+      }
+    
+    else {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Page introuvable');
     }
