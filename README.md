@@ -62,6 +62,80 @@ npm run serve
 
 Le serveur est maintenant en écoute sur le port 5000 (ou le port spécifié dans le fichier server.js).
 
+### Tests
+
+Pour lancer les tests :
+
+```
+npm run test
+```
+
+### Collaboration
+
+Afin de pouvoir collaborer au projet, il faut :
+
+- gitflow
+    Pour chaque feature, il faut créer une branche, dès que la feature est terminée, il faut ensuite faire une pull request sur develop
+    attendre que les github actions passe, et qu'une personne vienne review le code
+- conventions de nommage
+    Nous utilisons les conventions d'ici : https://www.w3schools.com/js/js_conventions.asp
+
+### structure du code
+
+```
+Imagitor.
+│   .gitignore
+│   package-lock.json
+│   package.json
+│   README.md
+│   tree.txt
+│   vite.config.js
+│   
+├───.idea
+│       .gitignore
+│       imagitor.iml
+│       modules.xml
+│       vcs.xml
+│       workspace.xml
+│       
+├───backend
+│   │   .env
+│   │   .env.exemple
+│   │   server.js
+│   │   
+│   ├───assets
+│   │   └───images
+│   ├───controllers
+│   │       imageController.js
+│   │       
+│   ├───database
+│   │       database.js
+│   │       
+│   └───models
+│           image.js
+│                  
+├───public
+│   │   index.html
+│   │   
+│   └───assets
+│           index-0b93f2c6.css
+│           main-fa16bf7f.js
+│           
+└───src
+    │   index.html
+    │   main.js
+    │   
+    ├───helpers
+    │       function.js
+    │       
+    ├───lang
+    │       fr.json
+    │       
+    └───scss
+            main.scss
+            _index.scss
+```
+
 ## Routes disponibles
 - POST /image: Génère une image à partir du texte fourni et l'enregistre sur le serveur.
 - GET /image: Récupère la liste des images sauvegardées sur le serveur.

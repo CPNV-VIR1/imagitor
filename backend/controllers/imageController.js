@@ -80,7 +80,7 @@ exports.getAllImages = async () => {
 }
 
 /* Creating a canvas with the text you want to display. */
-exports.createImage = async (text) => {
+exports.createCanvasWithText = async(text = 'Texte par défaut') => {
     const canvas = createCanvas(imgWidth, imgHeight);
     const ctx = canvas.getContext('2d');
 
@@ -90,6 +90,5 @@ exports.createImage = async (text) => {
     ctx.fillStyle = 'black';
     ctx.font = '30px sans-serif';
     ctx.fillText(text, 10, 100);
-
     return canvas;
 }

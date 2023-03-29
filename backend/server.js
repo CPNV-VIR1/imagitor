@@ -48,6 +48,8 @@ const server = http.createServer(async (req, res) => {
                     res.end('Image introuvable');
                 }
             }
+
+
         } else if (req.method === 'POST') {
             let body = '';
             req.on('data', chunk => {
@@ -56,7 +58,7 @@ const server = http.createServer(async (req, res) => {
 
             req.on('end', async () => {
                 const postData = querystring.parse(body);
-                const text = postData.text || 'Texte par défaut';
+                const text = postData.text;
 
                 const image = await createImage(text);
 
