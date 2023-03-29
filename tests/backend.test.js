@@ -27,3 +27,29 @@ test('created image without inputs returns undefined', () => {
     //then
     expect(image.imgWidth).toEqual(undefined);
 })
+
+test('Get Image returns Image', () => {
+
+    
+    //given
+    const image = createImage("test");
+
+    //when
+    //Assertion will trigger the events
+
+    //then
+    expect(image.imgWidth).toEqual(getImageByName("test").imgWidth);
+})
+
+test('Save Image returns Image name', () => {
+
+
+    //given
+    const image = saveImage("test", "test");
+
+    //when
+    //Assertion will trigger the events
+
+    //then
+    expect(image).toEqual("test");
+})
