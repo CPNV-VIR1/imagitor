@@ -6,21 +6,18 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "serve": "node backend/server.js",
-    "test": "jest"
+    "serve": "node backend/server.js"
   },
   "devDependencies": {
-    "@playwright/test": "^1.32.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "jest": "^29.5.0",
     "sass": "^1.58.3",
     "vite": "^4.1.0"
   },
   "dependencies": {
-    "expect": "^29.4.1",
-    "canvas": "^2.11.0"
-
+    "canvas": "^2.11.0",
+    "mysql2": "^3.2.0",
+    "sequelize": "^6.29.3"
   }
 }

@@ -24,7 +24,4 @@ dist-ssr
 *.sln
 *.sw?
 
-backend/assets/images/*
-build
-playwright*
-playwright-report/index.html
+/backend/assets/images/*

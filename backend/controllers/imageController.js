@@ -1,8 +1,10 @@
 const fs = require('fs');
-const { loadImage, createCanvas } = require('canvas');
-const imgWidth = 1200
+const { createCanvas } = require('canvas');
+const imgWidth = 650
 const imgHeight = 650
 const path = require('path');
+const { Image } = require('../models/image');
+
 
 /**
  * It returns a string of random characters of a specified length.
@@ -19,13 +21,44 @@ const randomCharacters = (length) => {
     return result;
 }
 
-/* Saving the image to the images folder. */
-exports.saveImage = async (image, imageName) => {
+/* Saving the image to the backend/assets/images folder. */
+exports.saveImage = async (image, text) => {
+    // Vérifiez si l'image existe déjà dans la base de données
+    const existingImage = await Image.findOne({ where: { text } });
+
+    if (existingImage) {
+        // Si l'image existe déjà, retournez simplement le nom du fichier existant
+        return existingImage.filename;
+    }
+
+
+    const buffer = image.toBuffer('image/png');
+    const imageName = `${Date.now()}_${encodeURIComponent(text)}.svg`;
+    /* Joining the path of the images directory. */
+    const imagesDir = path.join('backend', 'assets', 'images');
+    const filePath = path.join(imagesDir, imageName);
+
+
+    try {
+        await fs.promises.access(imagesDir, fs.constants.F_OK);
+    } catch (err) {
+        await fs.promises.mkdir(imagesDir, { recursive: true });
+    }
+
+    await fs.promises.writeFile(filePath, buffer);
+
+    await Image.create({ text, filename: imageName });
+
+    return imageName; // Retournez seulement le nom du fichier
+}
+
+/* Checking if the image exists and return them. */
+exports.getImageByName = async (imageName) => {
     return new Promise((resolve, reject) => {
-        const imagePath = path.join('backend', 'assets', 'images', imageName);
-        fs.writeFile(imagePath, image.toBuffer(), (err) => {
+        const imagePath = path.join('images', imageName);
+        fs.access(imagePath, fs.constants.F_OK, (err) => {
             if (err) {
-                reject(err);
+                resolve(null);
             } else {
                 resolve(imagePath);
             }
@@ -33,20 +66,7 @@ exports.saveImage = async (image, imageName) => {
     });
 }
 
-exports.getImageByName = async (imageName) => {
-    return new Promise((resolve, reject) => {
-      const imagePath = path.join('images', imageName);
-      fs.access(imagePath, fs.constants.F_OK, (err) => {
-        if (err) {
-          resolve(null);
-        } else {
-          resolve(imagePath);
-        }
-      });
-    });
-  }
-
-/* A function that is being exported to be used in another file. */
+/* A function that returns a promise. */
 exports.getAllImages = async () => {
     return new Promise((resolve, reject) => {
         fs.readdir('images', (err, files) => {
@@ -59,7 +79,7 @@ exports.getAllImages = async () => {
     });
 }
 
-/* Creating a canvas with the text that is being passed in. */
+/* Creating a canvas with the text you want to display. */
 exports.createImage = async (text) => {
     const canvas = createCanvas(imgWidth, imgHeight);
     const ctx = canvas.getContext('2d');
