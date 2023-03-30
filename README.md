@@ -51,14 +51,36 @@ DATABASE_ENGINE=mysql
 ### Frontend
 
 - Démarrez le serveur frontend
-```
+```js
 npm run dev
+```
+
+Resultat :
+```js
+> imagitor@0.0.0 dev
+> vite
+
+  VITE v4.1.4  ready in 242 ms
+
+  ➜  Local:   http://127.0.0.1:5173/
+  ➜  press h to show help
 ```
 
 ### Backend
 - Démarrez le serveur nodejs :
-```
+```js 
 npm run serve
+```
+
+Resultat :
+```js 
+> imagitor@0.0.0 serve
+> node backend/server.js
+
+Serveur démarré sur le port 5000
+Base de données vérifiée et créée si elle n'existait pas.
+Connexion à la base de données établie avec succès.
+Le modèle a été synchronisé avec la base de données.
 ```
 
 Le serveur est maintenant en écoute sur le port 5000 (ou le port spécifié dans le fichier server.js).
@@ -126,10 +148,26 @@ Imagitor.
 ```
 
 ## Routes disponibles
-- POST /image: Génère une image à partir du texte fourni et l'enregistre sur le serveur.
-- GET /image: Récupère la liste des images sauvegardées sur le serveur.
-- GET /image/{name}: Récupère une image spécifique en utilisant son nom.
+- POST /images: Génère une image à partir du texte fourni et l'enregistre sur le serveur.
+    - Paramètres
+        - text: Texte à utiliser pour créer l'image.
+    - Réponse
+        - 200 OK : Retourne le chemin de l'image créée.
+        - 400 Bad Request : Le texte envoyé est vide ou invalide.
+        - 404 Not Found : Seules les requêtes POST sont autorisées.
+        - 500 Internal Server Error : Erreur lors de la création ou de l'enregistrement de l'image.
 
+- GET /images: Récupère la liste des images sauvegardées sur le serveur.
+  - Réponse :
+      - 200 OK : Retourne un tableau JSON contenant les images.
+      - 500 Internal Server Error : Erreur lors de la récupération des images.
+
+- GET /images/{imageName} : Récupère une image spécifique en utilisant son nom.
+  - Paramètres
+    - imageName: Nom de fichier de l'image à récupérer.
+  - Réponses
+    - 200 OK : Retourne l'image au format PNG.
+    - 404 Not Found : L'image demandée n'a pas été trouvée.
 
 ## Erreur connue
 Une erreur avec la librairie canvas (pour le backend) est possible si vous n'avez pas toutes les dépendances installé en amont.

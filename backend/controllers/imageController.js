@@ -35,6 +35,9 @@ exports.saveImage = async (image, text) => {
 /* Checking if the image exists and return them. */
 exports.getImageByName = async (imageName) => {
     return new Promise((resolve, reject) => {
+        if (imageName === "") {
+            resolve(null);
+        }
         const imagePath = path.join(__dirname, '..', 'assets', 'images', imageName);
         fs.access(imagePath, fs.constants.F_OK, (err) => {
             if (err) {
@@ -48,16 +51,21 @@ exports.getImageByName = async (imageName) => {
 
 /* A function that returns a promise. */
 exports.getAllImages = async () => {
-    return new Promise((resolve, reject) => {
-        fs.readdir('images', (err, files) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(files);
-            }
+    try {
+        const images = await Image.findAll();
+        if (images.length === 0) {
+            return []; // Retourner un tableau vide si aucune image n'est disponible
+        }
+        return images.map(image => {
+            return {
+                text: image.text,
+                filename: image.filename,
+            };
         });
-    });
-}
+    } catch (err) {
+        throw new Error("Erreur lors de la récupération des images : " + err.message);
+    }
+};
 
 /* Creating a canvas with the text you want to display. */
 exports.createCanvasWithText = async (text = 'Texte par défaut') => {
