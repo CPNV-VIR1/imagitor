@@ -3,8 +3,6 @@ const querystring = require('querystring');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const { promisify } = require('util');
-const stat = promisify(fs.stat);
 const { saveImage, getImageByName, getAllImages, createCanvasWithText } = require('./controllers/imageController');
 const { initDatabase, createDatabaseIfNotExist } = require('./database/database');
 
@@ -55,11 +53,8 @@ const server = http.createServer(async (req, res) => {
             req.on('end', async () => {
                 const postData = querystring.parse(body);
                 const text = postData.text;
-
                 const image = await createCanvasWithText(text);
-
                 const imagePath = await saveImage(image, text);
-
                 res.writeHead(200, { 'Content-Type': 'text/plain' });
                 res.end(imagePath);
             });

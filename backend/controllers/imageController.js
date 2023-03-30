@@ -5,22 +5,6 @@ const imgHeight = 650
 const path = require('path');
 const { Image } = require('../models/image');
 
-
-/**
- * It returns a string of random characters of a specified length.
- * @param length - The length of the string you want to generate.
- * @returns A string of random characters.
- */
-const randomCharacters = (length) => {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-}
-
 /* Saving the image to the backend/assets/images folder. */
 exports.saveImage = async (image, text) => {
     // Vérifiez si l'image existe déjà dans la base de données
