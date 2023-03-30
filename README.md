@@ -8,6 +8,7 @@ Ce projet est un serveur Node.js simple qui permet de convertir un texte en imag
 
 - Node.js (version recommandée 14.x ou supérieure)
 - NPM (généralement inclus avec Node.js)
+- MySQL (version MySQL 5.5 minimum, est installé dans la suite du readme)
 
 ## Installation
 
