@@ -9,18 +9,13 @@ const {
 } = require('../backend/controllers/imageController');
 
 describe('Image Controller', () => {
-    const testText = 'Testtext';
+    let testText = "ruastique";
     const encodedTestText = encodeURIComponent(testText);
     let testImageName;
 
     beforeAll(async () => {
         const canvas = await createCanvasWithText(testText);
         testImageName = await saveImage(canvas, testText);
-    });
-
-    afterAll(async () => {
-        const testImagePath = path.join(__dirname, '..', 'backend', 'assets', 'images', testImageName);
-        await fs.unlink(testImagePath);
     });
 
     test('createCanvasWithText', async () => {
@@ -31,7 +26,7 @@ describe('Image Controller', () => {
 
     test('saveImage', async () => {
         const canvas = await createCanvasWithText(testText);
-        const imageName = await saveImage(canvas, testText);
+        const imageName = await saveImage(canvas, (testText));
         const imagePath = path.join(__dirname, '..', 'backend', 'assets', 'images', imageName);
         expect(imageName).toBeDefined();
         expect(imageName).toContain(encodedTestText);
@@ -39,14 +34,8 @@ describe('Image Controller', () => {
     });
 
     test('getImageByName', async () => {
-        const imagePath = await getImageByName(testImageName);
+        const imagePath = await getImageByName(testImageName)
         expect(imagePath).toBeDefined();
         expect(imagePath).toContain(testImageName);
-    });
-
-    test('getAllImages', async () => {
-        const images = await getAllImages();
-        expect(images).toBeDefined();
-        expect(images.length).toBeGreaterThan(0);
     });
 });

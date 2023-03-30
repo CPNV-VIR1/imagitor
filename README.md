@@ -8,6 +8,7 @@ Ce projet est un serveur Node.js simple qui permet de convertir un texte en imag
 
 - Node.js (version recommandée 14.x ou supérieure)
 - NPM (généralement inclus avec Node.js)
+- MySQL (version MySQL 5.5 minimum, est installé dans la suite du readme)
 
 ## Installation
 
@@ -88,18 +89,9 @@ Imagitor.
 │   package-lock.json
 │   package.json
 │   README.md
-│   tree.txt
 │   vite.config.js
-│   
-├───.idea
-│       .gitignore
-│       imagitor.iml
-│       modules.xml
-│       vcs.xml
-│       workspace.xml
-│       
+│        
 ├───backend
-│   │   .env
 │   │   .env.exemple
 │   │   server.js
 │   │   
@@ -115,11 +107,8 @@ Imagitor.
 │           image.js
 │                  
 ├───public
-│   │   index.html
 │   │   
 │   └───assets
-│           index-0b93f2c6.css
-│           main-fa16bf7f.js
 │           
 └───src
     │   index.html
