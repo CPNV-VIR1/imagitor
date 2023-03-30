@@ -5,7 +5,7 @@ const path = require('path');
 const url = require('url');
 const { promisify } = require('util');
 const stat = promisify(fs.stat);
-const { saveImage, getImageByName, getAllImages, createImage } = require('./controllers/imageController');
+const { saveImage, getImageByName, getAllImages, createCanvasWithText } = require('./controllers/imageController');
 const { initDatabase, createDatabaseIfNotExist } = require('./database/database');
 
 const port = 5000;
@@ -60,7 +60,7 @@ const server = http.createServer(async (req, res) => {
                 const postData = querystring.parse(body);
                 const text = postData.text;
 
-                const image = await createImage(text);
+                const image = await createCanvasWithText(text);
 
                 const imagePath = await saveImage(image, text);
 
