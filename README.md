@@ -169,6 +169,18 @@ Imagitor.
     - 200 OK : Retourne l'image au format PNG.
     - 404 Not Found : L'image demandée n'a pas été trouvée.
 
+## Prise en charge des langues
+L'application prend en charge la gestion de plusieurs langues grâce à un système de fichiers JSON pour chaque langue. Le langage utilisé par le navigateur est détecté automatiquement grâce à la fonction navigator.language.
+
+### Ajout d'une nouvelle langue
+
+1. Créez un nouveau fichier JSON avec le nom du code de la langue (par exemple, es-ES.json pour l'espagnol) dans le dossier languages.
+2. Copiez le contenu du fichier JSON d'une langue existante (par exemple, fr-FR.json ou en-US.json) et traduisez les valeurs des clés dans la nouvelle langue.
+3. Dans le fichier main.js, ajoutez une nouvelle paire clé-valeur dans l'objet ```supportedLanguages``` avec le code de la langue comme clé et le nom de la langue comme valeur (par exemple, 'es-ES': 'Español' pour l'espagnol).
+4. L'application détectera et utilisera automatiquement la nouvelle langue ajoutée en fonction des préférences du navigateur de l'utilisateur.
+
+Si la langue du navigateur ne contient pas de fichier de langue associé, la langue En-US sera utilisée par défaut.
+
 ## Erreur connue
 Une erreur avec la librairie canvas (pour le backend) est possible si vous n'avez pas toutes les dépendances installé en amont.
 Veuillez-vous référer à la page du wiki de la librairie, disponible [ici le wiki](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows)
