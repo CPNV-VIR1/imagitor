@@ -11,7 +11,7 @@ window.onload = () => {
 
     const image = document.querySelector('#outputImage');
 
-    await fetch('http://localhost:5000/image', {
+    await fetch('http://localhost:5000/images', {
       method: 'POST',
       mode: 'cors',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -20,7 +20,7 @@ window.onload = () => {
       .then((res) => res.text())
       .then((imagePath) => {
         // préfixe "/static" pour accéder aux fichiers statiques
-        const imageURL = `http://127.0.0.1:5000/static${imagePath}`;
+        const imageURL = `http://127.0.0.1:5000/images${imagePath}`;
         image.src = imageURL;
       })
       .catch((err) => console.log(err));

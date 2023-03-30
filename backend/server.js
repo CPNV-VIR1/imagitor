@@ -28,18 +28,15 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
-    if (req.url.startsWith('/image')) {
-
+    if (req.url.startsWith('/images')) {
         if (req.method === 'GET') {
-            if (req.url === '/image') {
+            if (req.url === '/images') {
                 const images = await getAllImages();
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify(images));
             } else {
-
                 const imageName = req.url.substring(7);
                 const imagePath = await getImageByName(imageName);
-
                 if (imagePath) {
                     res.writeHead(200, { 'Content-Type': 'image/png' });
                     res.end(fs.readFileSync(imagePath));
@@ -48,9 +45,8 @@ const server = http.createServer(async (req, res) => {
                     res.end('Image introuvable');
                 }
             }
-
-
-        } else if (req.method === 'POST') {
+        }
+        else if (req.method === 'POST') {
             let body = '';
             req.on('data', chunk => {
                 body += chunk.toString();
@@ -72,25 +68,6 @@ const server = http.createServer(async (req, res) => {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('Seules les requêtes POST sont autorisées');
         }
-    }
-
-    else if (req.url.startsWith('/static') && req.method === 'GET') {
-        const reqPath = url.parse(req.url).pathname;
-        const filePath = path.join(__dirname, 'assets', 'images', reqPath.substring(7));
-
-        try {
-            await stat(filePath);
-            res.writeHead(200, { 'Content-Type': 'image/png' });
-            res.end(fs.readFileSync(filePath));
-        } catch (err) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('Fichier introuvable');
-        }
-    }
-
-    else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Page introuvable');
     }
 });
 
