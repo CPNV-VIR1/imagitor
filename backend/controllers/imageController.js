@@ -1,27 +1,25 @@
 const fs = require('fs');
 const { createCanvas } = require('canvas');
-const imgWidth = 650
-const imgHeight = 650
 const path = require('path');
 const { Image } = require('../models/image');
+
+// Properties of the image size
+const imgWidth = 650
+const imgHeight = 650
 
 /* Saving the image to the backend/assets/images folder. */
 exports.saveImage = async (image, text) => {
     // Vérifiez si l'image existe déjà dans la base de données
     const existingImage = await Image.findOne({ where: { text } });
-
     if (existingImage) {
         // Si l'image existe déjà, retournez simplement le nom du fichier existant
         return existingImage.filename;
     }
-
-
     const buffer = image.toBuffer('image/png');
     const imageName = `${Date.now()}_${encodeURIComponent(text)}.svg`;
     /* Joining the path of the images directory. */
     const imagesDir = path.join('backend', 'assets', 'images');
     const filePath = path.join(imagesDir, imageName);
-
 
     try {
         await fs.promises.access(imagesDir, fs.constants.F_OK);
@@ -30,9 +28,7 @@ exports.saveImage = async (image, text) => {
     }
 
     await fs.promises.writeFile(filePath, buffer);
-
     await Image.create({ text, filename: imageName });
-
     return imageName; // Retournez seulement le nom du fichier
 }
 

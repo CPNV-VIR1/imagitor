@@ -1,8 +1,6 @@
 const http = require('http');
 const querystring = require('querystring');
 const fs = require('fs');
-const path = require('path');
-const url = require('url');
 const { saveImage, getImageByName, getAllImages, createCanvasWithText } = require('./controllers/imageController');
 const { initDatabase, createDatabaseIfNotExist } = require('./database/database');
 
