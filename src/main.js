@@ -22,9 +22,7 @@ window.onload = () => {
         const imageURL = `http://127.0.0.1:5000/images${imagePath}`;
         image.src = imageURL;
       })
-      .catch((err) => {
-        console.log(err)
-      });
+      .catch((err) => console.log(err));
   });
 }
 
