@@ -51,6 +51,11 @@ const server = http.createServer(async (req, res) => {
             req.on('end', async () => {
                 const postData = querystring.parse(body);
                 const text = postData.text;
+                if(text === "" || text === undefined || text === null){
+                    res.writeHead(400, { 'Content-Type': 'text/plain' });
+                    res.end('Le texte est vide');
+                    return;
+                }
                 const image = await createCanvasWithText(text);
                 const imagePath = await saveImage(image, text);
                 res.writeHead(200, { 'Content-Type': 'text/plain' });

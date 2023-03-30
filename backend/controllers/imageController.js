@@ -35,6 +35,9 @@ exports.saveImage = async (image, text) => {
 /* Checking if the image exists and return them. */
 exports.getImageByName = async (imageName) => {
     return new Promise((resolve, reject) => {
+        if(imageName === ""){
+            resolve(null);
+        }
         const imagePath = path.join(__dirname, '..', 'assets', 'images', imageName);
         fs.access(imagePath, fs.constants.F_OK, (err) => {
             if (err) {
