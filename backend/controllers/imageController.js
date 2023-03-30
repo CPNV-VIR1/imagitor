@@ -38,7 +38,6 @@ exports.saveImage = async (image, text) => {
     const imagesDir = path.join('backend', 'assets', 'images');
     const filePath = path.join(imagesDir, imageName);
 
-
     try {
         await fs.promises.access(imagesDir, fs.constants.F_OK);
     } catch (err) {
@@ -55,7 +54,7 @@ exports.saveImage = async (image, text) => {
 /* Checking if the image exists and return them. */
 exports.getImageByName = async (imageName) => {
     return new Promise((resolve, reject) => {
-        const imagePath = path.join('images', imageName);
+        const imagePath = path.join(__dirname, '..', 'backend', 'assets', 'images', imageName);
         fs.access(imagePath, fs.constants.F_OK, (err) => {
             if (err) {
                 resolve(null);
