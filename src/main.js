@@ -19,7 +19,6 @@ window.onload = () => {
     })
       .then((res) => res.text())
       .then((imagePath) => {
-        // préfixe "/static" pour accéder aux fichiers statiques
         const imageURL = `http://127.0.0.1:5000/images${imagePath}`;
         image.src = imageURL;
       })
