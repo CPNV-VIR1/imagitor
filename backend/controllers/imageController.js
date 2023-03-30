@@ -79,7 +79,7 @@ exports.getAllImages = async () => {
 }
 
 /* Creating a canvas with the text you want to display. */
-exports.createCanvasWithText = async(text = 'Texte par défaut') => {
+exports.createCanvasWithText = async (text = 'Texte par défaut') => {
     const canvas = createCanvas(imgWidth, imgHeight);
     const ctx = canvas.getContext('2d');
 

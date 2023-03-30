@@ -19,7 +19,7 @@ window.onload = () => {
     })
       .then((res) => res.text())
       .then((imagePath) => {
-        // Utilisez le préfixe "/static" pour accéder aux fichiers statiques
+        // préfixe "/static" pour accéder aux fichiers statiques
         const imageURL = `http://127.0.0.1:5000/static${imagePath}`;
         image.src = imageURL;
       })
@@ -27,7 +27,7 @@ window.onload = () => {
   });
 }
 
-  document.querySelector('#app').innerHTML = `
+document.querySelector('#app').innerHTML = `
   <header class="app__header">
     <h1>Imagitor ©</h1>
     <form id="form_langage">
