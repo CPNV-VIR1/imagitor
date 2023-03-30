@@ -1,8 +1,27 @@
 import './scss/main.scss';
 
-window.onload = () => {
+const loadLanguageFile = async (lang) => {
+  const response = await fetch(`./languages/${lang}.json`);
+  const data = await response.json();
+  return data;
+};
 
-  const langage = navigator.language || 'fr-FR';
+const updateTexts = (translations) => {
+  document.querySelector('h1').textContent = translations.header.title;
+  document.querySelector('label[for="textToImage"]').textContent = translations.form.label;
+  document.querySelector('input[type="submit"]').value = translations.form.submit;
+};
+
+window.onload = async () => {
+  const lang = navigator.language || "fr-FR";
+  const translations = await loadLanguageFile(lang);
+  updateTexts(translations);
+
+  document.querySelector('#form_langage').addEventListener('change', async (event) => {
+    const selectedLang = event.target.value;
+    const newTranslations = await loadLanguageFile(selectedLang);
+    updateTexts(newTranslations);
+  });
 
   document.querySelector('#form_textToImage').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -28,11 +47,11 @@ window.onload = () => {
 
 document.querySelector('#app').innerHTML = `
   <header class="app__header">
-    <h1>Imagitor ©</h1>
+    <h1 id="TitleWebsite">Imagitor ©</h1>
     <form id="form_langage">
       <select name="langage" id="langage">
-        <option value="fr">Français</option>
-        <option value="en">Anglais</option>
+        <option value="fr-FR">Français</option>
+        <option value="en-US">Anglais</option>
       </select>
     </form>
   </header>
@@ -44,7 +63,7 @@ document.querySelector('#app').innerHTML = `
         </form>
 
         <div class="app__contain__image">
-          <img src="" alt="Image générée" id="outputImage" className="outputImage">
+          <img src="" id="outputImage" className="outputImage">
         </div>
   </main>
 `;

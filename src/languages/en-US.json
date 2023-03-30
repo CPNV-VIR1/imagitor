@@ -1,0 +1,9 @@
+{
+  "header": {
+    "title": "Imagitor ©"
+  },
+  "form": {
+    "label": "Text to transform into image",
+    "submit": "Transform into image"
+  }
+}
