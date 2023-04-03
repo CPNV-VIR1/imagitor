@@ -188,9 +188,9 @@ Veuillez-vous référer à la page du wiki de la librairie, disponible [ici le w
 
 ## Répartition des tâches
 
-Front-end (sauf système de langage), backend (api + transformation image), stockage : Yannick Perret
+Front-end + système de multi-langages, backend (api + transformation image), stockage : Yannick Perret
 
-Front-end(système de langage), Tests end to end, unitaires, github action : Jessy Brocard
+Tests end to end, unitaires, github action : Jessy Brocard
 
 ## Authors
 
