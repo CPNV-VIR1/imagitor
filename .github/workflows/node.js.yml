@@ -20,12 +20,15 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: Shutdown Ubuntu MySQL (SUDO)
+      run: sudo service mysql stop # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
     - uses: actions/checkout@v3
     - uses: mirromutth/mysql-action@v1.1
       with:
         character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
         collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
         mysql database: 'imagitor' # Optional, default value is "test". The specified database which will be create
+        mysql root password: root
         mysql user: local
         mysql password: local
     - name: Use Node.js ${{ matrix.node-version }}
