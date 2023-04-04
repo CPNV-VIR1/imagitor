@@ -30,7 +30,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://localhost:5000/images/test", //Change "test" with image filename return from Create Image from Text
+                    "raw": "http://localhost:5000/images/test",
                     "protocol": "http",
                     "host": [
                         "localhost"
