@@ -1,0 +1,82 @@
+{
+    "info": {
+        "_postman_id": "559f9850-577d-43fb-8c45-389d5266d9c9",
+        "name": "Node.js API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get All Images",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/images",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "images"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Image by Name",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/images/test", //Change "test" with image filename return from Create Image from Text
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "images",
+                        "test"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create Image from Text",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "text",
+                            "value": "Hello, World!",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "http://localhost:5000/images",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "images"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
