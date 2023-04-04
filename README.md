@@ -93,6 +93,59 @@ Pour lancer les tests :
 npm run test
 ```
 
+Résultat :
+```
+> imagitor@0.0.0 test
+> jest
+
+ PASS  tests/imageController.test.js
+  ● Console
+
+    console.log
+      Base de données vérifiée et créée si elle n'existait pas.
+
+      at log (backend/database/database.js:24:13)
+
+    console.log
+      Connexion à la base de données établie avec succès.
+
+      at log (backend/database/database.js:33:13)
+
+    console.log
+      Le modèle a été synchronisé avec la base de données.
+
+      at log (backend/database/database.js:35:13)
+
+ PASS  tests/Image.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.091 s
+Ran all test suites.
+```
+
+pour lancer un seul test :
+
+```
+npm run test Image.test.js
+```
+Résultat :
+
+```
+> imagitor@0.0.0 test
+> jest Image.test.js
+
+ PASS  tests/Image.test.js
+  Image Model
+    √ Image should be defined (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.619 s, estimated 1 s
+Ran all test suites matching /Image.test.js/i.
+```
 ### Collaboration
 
 Afin de pouvoir collaborer au projet, il faut :
