@@ -21,12 +21,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: potatoqualitee/mssqlsuite@v1.7
+    - uses: mirromutth/mysql-action@v1.1
       with:
-        install: sqlengine, sqlclient, sqlpackage, localdb
-        version: 2017
-        sa-password: 1234
-    - run: sqlcmd -S localhost -U sa -P 1234 -d imagitor -Q "SELECT @@version;"
+        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
+        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
+        mysql database: 'imagitor' # Optional, default value is "test". The specified database which will be create
+        mysql root password:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
