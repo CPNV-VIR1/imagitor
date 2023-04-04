@@ -7,6 +7,7 @@ const {
     getAllImages,
     createCanvasWithText
 } = require('../backend/controllers/imageController');
+const { initDatabase, createDatabaseIfNotExist } = require('../backend/database/database');
 
 describe('Image Controller', () => {
     let testText = "ruastique";
@@ -14,6 +15,8 @@ describe('Image Controller', () => {
     let testImageName;
 
     beforeAll(async () => {
+        await createDatabaseIfNotExist();
+        await initDatabase();
         const canvas = await createCanvasWithText(testText);
         testImageName = await saveImage(canvas, testText);
     });
