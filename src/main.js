@@ -71,7 +71,7 @@ window.onload = async () => {
 
     const image = document.querySelector('#outputImage');
 
-    await fetch('http://localhost:5001/images', {
+    await fetch('http://localhost:5000/images', {
       method: 'POST',
       mode: 'cors',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -79,7 +79,7 @@ window.onload = async () => {
     })
       .then((res) => res.text())
       .then((imagePath) => {
-        const imageURL = `http://127.0.0.1:5001/images${imagePath}`;
+        const imageURL = `http://127.0.0.1:5000/images${imagePath}`;
         image.src = imageURL;
       })
       .catch((err) => console.log(err));
