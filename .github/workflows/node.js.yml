@@ -23,7 +23,8 @@ jobs:
     - uses: actions/checkout@v3
     - uses: potatoqualitee/mssqlsuite@v1.7
       with:
-        install: sqlengine, sqlpackage
+        install: sqlengine, sqlclient, sqlpackage, localdb
+        version: 2017
         sa-password: ${{ secrets.sa_password }}
     - run: sqlcmd -S localhost -U sa -P ${{ secrets.sa_password }} -d imagitor -Q "SELECT @@version;"
     - name: Use Node.js ${{ matrix.node-version }}
