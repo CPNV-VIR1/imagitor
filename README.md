@@ -154,7 +154,7 @@ Afin de pouvoir collaborer au projet, il faut :
     Pour chaque feature, il faut créer une branche, dès que la feature est terminée, il faut ensuite faire une pull request sur develop
     attendre que les github actions passe, et qu'une personne vienne review le code
 - conventions de nommage
-    Nous utilisons les conventions d'ici : https://www.w3schools.com/js/js_conventions.asp
+    Nous utilisons les conventions d'ici : https://www.robinwieruch.de/javascript-naming-conventions/
 
 ### structure du code
 
