@@ -10,7 +10,7 @@ const {
 const { initDatabase, createDatabaseIfNotExist } = require('../backend/database/database');
 
 describe('Image Controller', () => {
-    let testText = "ruastique";
+    let testText = "ruastiqu";
     const encodedTestText = encodeURIComponent(testText);
     let testImageName;
 
