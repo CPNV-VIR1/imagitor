@@ -28,6 +28,42 @@ cd imagitor
 npm install
 ```
 
+### installation docker
+
+#### Pré-requis
+pour utiliser le project dans sa version containerisé, installez docker hub
+
+#### Structure
+Le project contient un DockerFile sous src/Dockerfile, il est présent pour créer une image du frontend du project
+Un autre DockerFile se trouve dans backend/Dockerfile, lui créer une image pour le backend.
+il y a aussi un .dockerignore à la racine du project, on veut que les images installent leur propes dépendances au moment de les construire, pour éviter de prendre le dossier node_modules
+
+#### construction des images
+
+Pour construire les images, lancez ces deux commandes :
+
+```
+docker build -f .\src\Dockerfile -t imagitor:latest .
+```
+Et
+```
+docker build -f backend/Dockerfile -t imagitor-back-end:latest .
+```
+On construire les deux images, pour le backend et frontend, notez les noms des images, afin de pouvoir les lancer par la suite
+
+#### lancement des images
+
+Après avoir construits les images, il faut 
+
+```
+docker run -p 5173:5173 imagitor:latest
+```
+Et
+
+```
+docker run -p 5000:5000 -t imagitor-back-end:latest
+```
+
 ### Configuration de la base de données MariaDB
 Ce projet utilise MariaDB comme base de données pour stocker les informations sur les images générées. Voici les étapes à suivre pour configurer MariaDB pour votre projet :
 
