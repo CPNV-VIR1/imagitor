@@ -8,7 +8,7 @@ const outDir = resolve(__dirname, 'public')
 export default defineConfig({
   root,
   server: {
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     port: 5173,
   },
   build: {
