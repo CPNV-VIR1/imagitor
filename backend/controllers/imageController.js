@@ -18,7 +18,7 @@ exports.saveImage = async (image, text) => {
     const buffer = image.toBuffer('image/png');
     const imageName = `${Date.now()}_${encodeURIComponent(text)}.svg`;
     /* Joining the path of the images directory. */
-    const imagesDir = path.join('backend', 'assets', 'images');
+    const imagesDir = path.join('assets', 'images');
     const filePath = path.join(imagesDir, imageName);
 
     try {

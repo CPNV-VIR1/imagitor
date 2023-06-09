@@ -1,14 +1,14 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
-const root = resolve(__dirname, 'src')
+const root = resolve('./')
 const outDir = resolve(__dirname, 'public')
 
 // https://vitejs.dev/config/
 export default defineConfig({
   root,
   server: {
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     port: 5173,
   },
   build: {
