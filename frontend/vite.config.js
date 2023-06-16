@@ -8,9 +8,10 @@ const outDir = resolve(__dirname, 'public')
 export default defineConfig({
   root,
   server: {
-    host: '127.0.0.1',
+    host: true,
     port: 5173,
   },
+  assetsInclude: ['**/*.json'],
   build: {
     outDir,
     emptyOutDir: true,

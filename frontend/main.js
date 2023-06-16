@@ -18,7 +18,7 @@ const createLanguageOptions = () => {
 
 const loadLanguageFile = async (lang) => {
   try {
-    const response = await fetch(`./languages/${lang}.json`);
+    const response = await fetch(`languages/${lang}.json`);
 
     if (!response.ok) {
       throw new Error("Langage non supporté");
@@ -28,7 +28,7 @@ const loadLanguageFile = async (lang) => {
     return data;
   } catch (error) {
     console.warn(`Erreur lors du chargement du fichier de langue "${lang}": ${error.message}. Utilisation de la langue par défaut (en-US).`);
-    const response = await fetch('./languages/en-US.json');
+    const response = await fetch('languages/en-US.json');
     const data = await response.json();
     return data;
   }
@@ -79,7 +79,7 @@ window.onload = async () => {
     })
       .then((res) => res.text())
       .then((imagePath) => {
-        const imageURL = `http://127.0.0.1:5000/images${imagePath}`;
+        const imageURL = `http://localhost:5000/images${imagePath}`;
         image.src = imageURL;
       })
       .catch((err) => console.log(err));
