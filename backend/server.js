@@ -13,7 +13,7 @@ const port = 5000;
 
 const server = http.createServer(async (req, res) => {
     // CORS headers
-    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5173');
+    res.setHeader('Access-Control-Allow-Origin', ['http://localhost:5173']);
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

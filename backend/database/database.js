@@ -2,9 +2,8 @@ const { Sequelize } = require('sequelize');
 const path = require('path');
 require('dotenv').config({ path: path.join('.env.local') });
 
-console.log(process.env.DATABASE_ENGINE)
 const sequelize = new Sequelize(process.env.DATABASE_DATABASE, process.env.DATABASE_USERNAME, process.env.DATABASE_PASSWORD, {
-  host: process.env.DATABASE_LOCALHOST,
+  host: process.env.DATABASE_HOST,
   port: process.env.DATABASE_PORT,
   dialect: process.env.DATABASE_ENGINE,
   logging: false,
