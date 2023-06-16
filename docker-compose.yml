@@ -13,6 +13,7 @@ services:
   api:
     build:
       context: "./backend"
+    image: imagitor-api:prod
     depends_on:
       - mysql_db
     environment:
@@ -27,7 +28,8 @@ services:
 
   client:
     build:
-        context: ./frontend
+      context: ./frontend
+    image: imagitor-client:prod
     ports:
       - "5173:80"
       
