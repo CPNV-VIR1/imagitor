@@ -4,7 +4,7 @@ const { sequelize } = require('../database/database');
 
 const Image = sequelize.define('image', {
   text: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   filename: {
