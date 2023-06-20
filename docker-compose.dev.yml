@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mysql_db:
+    container_name: mysql
+    image: mysql:8.0
+    volumes:
+      - mysql_db_data:/var/lib/mysql
+      - mysql_db_config:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=imagitor
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql_db
+    environment:
+      DATABASE_HOST: mysql_db
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:5173"
+    environment:
+      - VITE_API_URL=http://127.0.0.1:8300
+    depends_on:
+      - backend
+volumes:
+  mysql_db_data: {}

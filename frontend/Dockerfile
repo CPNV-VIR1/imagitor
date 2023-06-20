@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:lts-bullseye-slim as build
+FROM node:18-alpine as build
 
 WORKDIR /app
 COPY ./package*.json ./
@@ -9,11 +9,9 @@ COPY . .
 RUN npm run build
 
 
-FROM nginx:stable-alpine as production
+FROM nginx:stable-alpine
 
 COPY --from=build /app/public /usr/share/nginx/html
 COPY --from=build /app/languages /usr/share/nginx/html/languages
-
-EXPOSE 5173
 
 CMD ["nginx", "-g", "daemon off;"]

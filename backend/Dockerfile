@@ -1,19 +1,12 @@
 # syntax=docker/dockerfile:1
 
-FROM node:lts-bullseye-slim
-
+FROM node:18-alpine
 WORKDIR /app
+COPY ["package.json", "package-lock.json*", "./"]
 
-COPY ./package*.json ./
+RUN apk add --update python3 make g++ pkgconfig pixman-dev cairo-dev jpeg-dev pango-dev giflib-dev
+RUN apk add --update fontconfig ttf-dejavu
 
 RUN npm install
-RUN apt-get update && apt-get install -y \
-    fontconfig \
-    fonts-dejavu \
-    && rm -rf /var/lib/apt/lists/*
-
 COPY . .
-
-EXPOSE 5000
-
-CMD ["npm", "run", "serve"]
+CMD ["node", "server.js"]

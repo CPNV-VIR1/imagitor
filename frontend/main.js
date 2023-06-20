@@ -1,4 +1,6 @@
 import './scss/main.scss';
+const URL = import.meta.env.VITE_API_URL || 'http://localhost:8300'
+console.log(URL)
 
 const supportedLanguages = {
   'fr-FR': 'Français',
@@ -71,7 +73,7 @@ window.onload = async () => {
 
     const image = document.querySelector('#outputImage');
 
-    await fetch('http://localhost:5000/images', {
+    await fetch(`${URL}/images`, {
       method: 'POST',
       mode: 'cors',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -79,7 +81,7 @@ window.onload = async () => {
     })
       .then((res) => res.text())
       .then((imagePath) => {
-        const imageURL = `http://localhost:5000/images${imagePath}`;
+        const imageURL = `${URL}/images${imagePath}`;
         image.src = imageURL;
       })
       .catch((err) => console.log(err));
