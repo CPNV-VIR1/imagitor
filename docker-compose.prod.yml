@@ -29,11 +29,15 @@ services:
       - backend
     image: tchoune/imagitor-frontend
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
-      - VITE_API_URL=http://127.0.0.1:8300
+      - VITE_API_URL=http://imagitor.cld.education:8300
     volumes:
       - './frontend/nginx-conf/default.conf:/etc/nginx/conf.d/default.conf'
 volumes:
   mysql_data:
   mysql_config:
+
+# docker build -t backend ./backend
+# docker tag backend tchoune/imagitor-backend
+# docker push tchoune/imagitor-backend

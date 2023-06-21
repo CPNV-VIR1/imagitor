@@ -9,9 +9,11 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=123
       - MYSQL_DATABASE=imagitor
-  backend:
-    container_name: backend
-    image: tchoune/imagitor-backend
+  backend_test:
+    build:
+      context: ./backend
+      target: dev
+    command: npm test
     depends_on:
       - mysql_db
     environment:
@@ -21,6 +23,8 @@ services:
       - DATABASE_PORT=3306
       - DATABASE_DATABASE=imagitor 
       - DATABASE_ENGINE=mysql
+    volumes:
+      - ./backend:/app
     ports:
       - "8300:5000"
   frontend:

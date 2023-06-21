@@ -14,7 +14,7 @@ const port = 5000;
 
 const server = http.createServer(async (req, res) => {
     // CORS headers
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.setHeader('Access-Control-Allow-Origin', 'http://imagitor.cld.education');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

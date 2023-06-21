@@ -1,0 +1,5 @@
+docker build -t tchoune/imagitor-backend ./backend
+docker push tchoune/imagitor-backend
+
+docker build -t tchoune/imagitor-frontend ./frontend
+docker push tchoune/imagitor-frontend
