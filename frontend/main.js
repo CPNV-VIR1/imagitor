@@ -1,5 +1,5 @@
 import './scss/main.scss';
-const URL = import.meta.env.VITE_API_URL || 'http://imagitor.cld.education:8300'
+const URL = import.meta.env.VITE_API_URL || 'http://imagitor.cld.education/api'
 console.log(URL)
 
 const supportedLanguages = {
