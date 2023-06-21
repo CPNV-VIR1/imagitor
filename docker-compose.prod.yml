@@ -7,29 +7,30 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=123
-      - MYSQL_DATABASE=imagitor
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
   backend:
     container_name: backend
     image: tchoune/imagitor-backend
     depends_on:
       - mysql_db
     environment:
-      - DATABASE_USERNAME=root
-      - DATABASE_PASSWORD=123
-      - DATABASE_HOST=mysql_db
-      - DATABASE_PORT=3306
-      - DATABASE_DATABASE=imagitor 
-      - DATABASE_ENGINE=mysql
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_DATABASE=${DATABASE_DATABASE}
+      - DATABASE_ENGINE=${DATABASE_ENGINE}
   frontend:
     container_name: frontend
     depends_on:
       - backend
     image: tchoune/imagitor-frontend
     environment:
-      - VITE_API_URL=http://imagitor.cld.education:8300
+      - VITE_API_URL=${VITE_API_URL}
   nginx:
     container_name: nginx
+    image: nginx
     depends_on:
       - frontend
       - backend
@@ -40,7 +41,3 @@ services:
 volumes:
   mysql_data:
   mysql_config:
-
-# docker build -t backend ./backend
-# docker tag backend tchoune/imagitor-backend
-# docker push tchoune/imagitor-backend
