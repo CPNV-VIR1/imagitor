@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 FROM node:18-alpine as build
-ENV VITE_API_URL http://imagitor.cld.education:8300
+ENV VITE_API_URL http://imagitor.cld.education
 WORKDIR /app
 COPY ./package*.json ./
 RUN npm install
