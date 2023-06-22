@@ -84,7 +84,10 @@ Notez qu'on push sur un les dépôts imagitor-backend et imagitor-frontend de tc
 #### Pull des images
 
 sur l'instance AWS, à la racine de l'utilisateur
-
+```
+sudo docker compose pull
+```
+et
 ```
 sudo docker compose up -d
 ```
