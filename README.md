@@ -38,31 +38,58 @@ Le project contient un DockerFile sous src/Dockerfile, il est présent pour cré
 Un autre DockerFile se trouve dans backend/Dockerfile, lui créer une image pour le backend.
 il y a aussi un .dockerignore à la racine du project, on veut que les images installent leur propes dépendances au moment de les construire, pour éviter de prendre le dossier node_modules
 
-#### construction des images
+#### Construction des images
 
 Pour construire les images, lancez ces deux commandes :
 
 ```
-docker build -f .\src\Dockerfile -t imagitor:latest .
+docker build -t tchoune/imagitor-backend ./backend
 ```
 Et
 ```
-docker build -f backend/Dockerfile -t imagitor-back-end:latest .
+docker build -t tchoune/imagitor-frontend ./frontend
 ```
 On construire les deux images, pour le backend et frontend, notez les noms des images, afin de pouvoir les lancer par la suite
 
-#### lancement des images
+#### Lancement des images en local
 
 Après avoir construits les images, il faut 
 
 ```
-docker run -p 5173:5173 imagitor:latest
+docker run -p 5173:5173 tchoune/imagitor-frontend:latest
 ```
 Et
 
 ```
-docker run -p 5000:5000 -t imagitor-back-end:latest
+docker run -p 5000:5000 -t tchoune/imagitor-backend:latest
 ```
+
+les ports sont configurable, tout comme les noms des images
+
+#### Push des imsages
+
+afin de pouvoir pousser des changements en prod, il faut push les deux images créée, on ne push pas mysql, ni nginx, seulement le frontend et backend
+
+```
+docker push tchoune/imagitor-backend
+```
+Et
+
+```
+docker push tchoune/imagitor-frontend
+```
+
+Notez qu'on push sur un les dépôts imagitor-backend et imagitor-frontend de tchoune, il faut être log et avoir accès pour pouvoir push
+
+#### Pull des images
+
+sur l'instance AWS, à la racine de l'utilisateur
+
+```
+sudo docker compose up -d
+```
+
+les images sont pull, et build en mode détaché
 
 ### Configuration de la base de données MariaDB
 Ce projet utilise MariaDB comme base de données pour stocker les informations sur les images générées. Voici les étapes à suivre pour configurer MariaDB pour votre projet :
